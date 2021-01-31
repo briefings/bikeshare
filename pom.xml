@@ -103,6 +103,12 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>SparkPackagesRepo</id>
+      <name>Spark Packages Repo</name>
+      <url>https://dl.bintray.com/spark-packages/maven/</url>
+      <layout>default</layout>
+    </repository>
   </repositories>
 
   <build>
