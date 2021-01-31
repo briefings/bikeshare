@@ -11,11 +11,11 @@ class DataSteps(spark: SparkSession) {
     val (ridesFrame: DataFrame, ridesSet: Dataset[Row]) = new DataRead(spark = spark)
       .dataRead(parameters = parameters)
 
-    println("\nFrame")
+    println("\nDataFrame")
     ridesFrame.show(5)
     ridesFrame.printSchema()
 
-    println("\nAnd")
+    println("\nDatasets")
     ridesSet.show(5)
     ridesSet.printSchema()
 
