@@ -18,18 +18,19 @@ class DataRead(spark: SparkSession) {
 
   private val localSettings = new LocalSettings()
 
-  def dataRead(parameters: InspectArguments.Parameters): DataFrame = {
+  def dataRead(parameters: InspectArguments.Parameters): (DataFrame, Dataset[Row]) = {
 
     // Implicits
     // import spark.implicits._
 
     // Schema of data
     val schemaOf: Try[StructType] = new SchemaOf(spark = spark).schemaOf(parameters = parameters)
-    val caseClassOf = CaseClassOf.caseClassOf(schema = schemaOf.get)
+
 
     // Path to data files
     val dataPathString: String = Paths.get(localSettings.resourcesDirectory,
       parameters.dataSet: _*).toString
+    println(dataPathString)
 
     // Sections: This expression will load data from several files because dataPathString is a wildcard path
     val data: Try[DataFrame] = Exception.allCatch.withTry(
@@ -44,8 +45,11 @@ class DataRead(spark: SparkSession) {
 
     // Hence
     if (data.isSuccess) {
-      data.get
-      // (data.get, data.get.as(caseClassOf))
+      var frame: DataFrame = new DataFields().dataFields(data = data.get)
+      frame = new DataTypes().dataTypes(data = frame)
+      val caseClassOf = CaseClassOf.caseClassOf(schema = frame.schema)
+
+      (frame, frame.as(caseClassOf))
     } else {
       sys.error(data.failed.get.getMessage)
     }
