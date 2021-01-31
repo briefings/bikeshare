@@ -1,5 +1,6 @@
 package com.grey
 
+import com.grey.inspectors.InspectArguments
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 
@@ -10,6 +11,17 @@ import org.apache.spark.sql.SparkSession
 object BikeShareApp {
 
   def main(args: Array[String]): Unit = {
+
+    // Arguments
+    if (args.length == 0) {
+      sys.error("The YAML of parameters is required.")
+    }
+
+
+    // Inspect
+    val inspectArguments = InspectArguments
+    val parameters: InspectArguments.Parameters = inspectArguments.inspectArguments(args)
+
 
     // Limiting log data streams
     Logger.getLogger("org").setLevel(Level.OFF)
@@ -29,6 +41,9 @@ object BikeShareApp {
 
     // Graphs Model Checkpoint Directory
     spark.sparkContext.setCheckpointDir("/tmp")
+
+    // Hence
+    new DataSteps(spark = spark).dataSteps(parameters = parameters)
 
   }
 
