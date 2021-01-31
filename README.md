@@ -98,6 +98,6 @@ In terms of packaging, **Maven**, instead of **Scala Build Tool** (SBT), is now 
 
 <br/>
 
-Also of import <abbr title="with respect to">w.r.t.</abbr> Maven's pom, the [spark packages hosted by bintray](https://dl.bintray.com/spark-packages/maven/), 
+Also of import <a title="with respect to">w.r.t.</a> Maven's pom, the [spark packages hosted by bintray](https://dl.bintray.com/spark-packages/maven/), 
 e.g. packaging details w.r.t. the 
 [graphframes package](https://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.8.1-spark2.4-s_2.11/)
