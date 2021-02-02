@@ -30,17 +30,16 @@ object BikeShareApp {
     // Spark Session Instance
     val spark = SparkSession.builder().appName("bikeshare")
       .config("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
-      .config("spark.sql.warehouse.dir", "")
       .getOrCreate()
 
     // Spark Context Level Logging
     spark.sparkContext.setLogLevel("ERROR")
 
     // Configurations
-    spark.conf.set("spark.kryoserializer.buffer.max", "2048m")
+    // spark.conf.set("spark.kryoserializer.buffer.max", "2048m")
 
     // Graphs Model Checkpoint Directory
-    spark.sparkContext.setCheckpointDir("/tmp")
+    // spark.sparkContext.setCheckpointDir("/tmp")
 
     // Hence
     new DataSteps(spark = spark).dataSteps(parameters = parameters)
