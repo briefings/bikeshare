@@ -3,22 +3,33 @@ package com.grey
 import com.grey.inspectors.InspectArguments
 import com.grey.sources.DataRead
 import org.apache.spark.sql.{DataFrame, Dataset, Row, SparkSession}
+import org.apache.spark.storage.StorageLevel
 
 class DataSteps(spark: SparkSession) {
 
   def dataSteps(parameters: InspectArguments.Parameters): Unit = {
 
+    // Read the BikeShare data
     val (ridesFrame: DataFrame, ridesSet: Dataset[Row]) = new DataRead(spark = spark)
       .dataRead(parameters = parameters)
 
-    println("\nDataFrame")
-    ridesFrame.show(5)
-    ridesFrame.printSchema()
+    // ... persistence
+    ridesFrame.persist(StorageLevel.MEMORY_ONLY)
+    ridesSet.persist(StorageLevel.MEMORY_ONLY)
+    ridesFrame.createOrReplaceTempView(viewName = "rides")
 
-    println("\nDatasets")
-    ridesSet.show(5)
-    ridesSet.printSchema()
+    // Previews
+    println(s"\nThere are ${ridesSet.count()} records.\n")
+    spark.sql("SHOW TABLES").show()
 
+    // Queries
+    new com.grey.sets.ContinuousArithmetic(spark = spark).continuousArithmetic(rides = ridesSet)
+    new com.grey.sql.ContinuousArithmetic(spark = spark).continuousArithmetic()
+
+    new com.grey.sets.Numbering(spark = spark).numbering(rides = ridesSet)
+    new com.grey.sql.Numbering(spark = spark).numbering()
+
+    new com.grey.sets.Rankings(spark = spark).rankings(rides = ridesSet)
 
   }
 
