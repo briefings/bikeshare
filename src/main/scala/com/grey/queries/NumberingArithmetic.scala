@@ -31,7 +31,7 @@ class NumberingArithmetic(spark: SparkSession) {
 
 
     /**
-      * The example
+      * Example: row_number()
       */
     println("The row number of each bicycle's cumulative duration value wherein " +
       "the cumulative values are w.r.t. ascending start time.  The previews are w.r.t. " +
