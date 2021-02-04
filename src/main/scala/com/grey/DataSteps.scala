@@ -27,7 +27,7 @@ class DataSteps(spark: SparkSession) {
     new com.grey.queries.ContinuousArithmetic(spark = spark).continuousArithmetic(rides = ridesSet)
     new com.grey.queries.RankingArithmetic(spark = spark).rankingArithmetic(rides = ridesSet)
     new com.grey.queries.HierarchicalArithmetic(spark = spark).hierarchicalArithmetic(rides = ridesSet)
-    
+
   }
 
 }
