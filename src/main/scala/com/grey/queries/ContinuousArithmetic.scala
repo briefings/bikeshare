@@ -11,7 +11,7 @@ import org.apache.spark.sql.functions.sum
 class ContinuousArithmetic(spark: SparkSession) {
 
   /**
-    * Focus: rollup,
+    * Focus: window
     *
     * @param rides: The Dataset[Row] of rides
     */
@@ -31,7 +31,7 @@ class ContinuousArithmetic(spark: SparkSession) {
 
 
     /**
-      * Window
+      * Example: window
       *
       * Imagine a bike riding firm that services a bike as as soon as the energy expended by
       *
