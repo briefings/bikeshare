@@ -27,17 +27,7 @@ class DataSteps(spark: SparkSession) {
     new com.grey.queries.ContinuousArithmetic(spark = spark).continuousArithmetic(rides = ridesSet)
     new com.grey.queries.RankingArithmetic(spark = spark).rankingArithmetic(rides = ridesSet)
     new com.grey.queries.HierarchicalArithmetic(spark = spark).hierarchicalArithmetic(rides = ridesSet)
-
-    /*
-    new com.grey.sets.ContinuousArithmetic(spark = spark).continuousArithmetic(rides = ridesSet)
-    new com.grey.sql.ContinuousArithmetic(spark = spark).continuousArithmetic()
-
-    new com.grey.sets.Numbering(spark = spark).numbering(rides = ridesSet)
-    new com.grey.sql.Numbering(spark = spark).numbering()
-
-    new com.grey.sets.Rankings(spark = spark).rankings(rides = ridesSet)
-    */
-
+    
   }
 
 }
