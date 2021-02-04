@@ -101,3 +101,64 @@ In terms of packaging, **Maven**, instead of **Scala Build Tool** (SBT), is now 
 Also of import w.r.t. Maven's pom, the [spark packages hosted by bintray](https://dl.bintray.com/spark-packages/maven/), 
 e.g., packaging details w.r.t. the 
 [graphframes package](https://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.8.1-spark2.4-s_2.11/)
+
+<br/>
+
+### Test Notes
+
+```
+    // Continuous riding time
+    val windowSpec: WindowSpec = Window.partitionBy($"bike_number").orderBy($"start_date")
+          .rowsBetween(Window.unboundedPreceding, Window.currentRow)
+    val continuous: DataFrame = rides.select($"bike_number", $"start_date", $"duration",
+        sum($"duration").over(windowSpec).as("total_sec"))
+      
+    // Cf.
+    val discrete: Dataset[Row] = rides.select($"bike_number", $"duration")
+        .groupBy($"bike_number")
+        .agg(sum($"duration").as("total_sec"))
+    
+    // Determine
+    val intersection: Dataset[Row] = discrete.join(continuous.select($"bike_number", $"total_sec"),
+        Seq("bike_number", "total_sec"), joinType = "inner")
+        
+    // Expected
+    discrete.count() === intersection.count()
+```
+
+And
+
+```
+    // Continuous riding time
+    val continuous: DataFrame = spark.sql("SELECT bike_number, start_date, duration, " +
+      "SUM(duration) over " +
+      "(PARTITION BY bike_number ORDER BY start_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) " +
+      "AS total_sec FROM rides")
+
+    // Cf.
+    val discrete: DataFrame = spark.sql("SELECT bike_number, " +
+      "SUM(duration) AS total_sec FROM rides GROUP BY bike_number")
+
+    // Determine
+    continuous.createOrReplaceTempView("continuous")
+    discrete.createOrReplaceTempView("discrete")
+    val intersection: DataFrame = spark.sql("SELECT discrete.bike_number, discrete.total_sec " +
+        "FROM discrete INNER JOIN continuous " +
+        "ON (discrete.bike_number = continuous.bike_number AND discrete.total_sec = continuous.total_sec)")
+      
+    // Expected
+    discrete.count() === intersection.count()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
