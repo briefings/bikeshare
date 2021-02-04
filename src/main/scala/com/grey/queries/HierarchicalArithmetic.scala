@@ -3,9 +3,19 @@ package com.grey.queries
 import org.apache.spark.sql.functions.{count, month}
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
+/**
+  *
+  * @param spark: An instance of SparkSession
+  */
 class HierarchicalArithmetic(spark: SparkSession) {
 
+  /**
+    * Focus: rollup()
+    *
+    * @param rides: The Dataset[Row] of rides
+    */
   def hierarchicalArithmetic(rides: Dataset[Row]): Unit = {
+
 
     println("\n\nHierarchical Arithmetic\n")
 
@@ -20,7 +30,7 @@ class HierarchicalArithmetic(spark: SparkSession) {
 
 
     /**
-      * rollup
+      * Example: rollup()
       */
     println("The number of ride departures per station per month.  " +
       "The previews are w.r.t. sql & dataset, respectively")
