@@ -30,9 +30,9 @@ class RankingArithmetic(spark: SparkSession) {
 
 
     /**
-      * Example
+      * Example: rank(), dense_rank()
       */
-    println("A summary of bicycles in relation to descending total ride time per bicycle.  The " +
+    println("Rankings of bicycles in relation to -descending total ride time- per bicycle.  The " +
       "previews are w.r.t. sql & dataset, respectively")
 
 
