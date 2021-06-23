@@ -71,13 +71,15 @@ the [graphframes package](https://dl.bintray.com/spark-packages/maven/graphframe
 
 ```shell
 
-spark-submit --class com.grey.BikeShareApp --name "bikeshare" --master spark://... --num-executors 2 
-  target/bikeshare-1.0.47-jar-with-dependencies.jar 
-    https://raw.githubusercontent.com/briefings/bikeshare/develop/arguments.yaml
+spark-submit --class com.grey.BikeShareApp --name "bikeshare" --master spark://... 
+  --num-executors 2 
+    target/bikeshare-1.0.47-jar-with-dependencies.jar 
+      https://raw.githubusercontent.com/briefings/bikeshare/develop/arguments.yaml
   
-spark-submit --class com.grey.BikeShareApp --name "bikeshare" --master spark://... --total-executor-cores 2 --num-executors 2 
-  target/bikeshare-1.0.47-jar-with-dependencies.jar 
-    https://raw.githubusercontent.com/briefings/bikeshare/develop/arguments.yaml
+spark-submit --class com.grey.BikeShareApp --name "bikeshare" --master spark://... 
+  --total-executor-cores 2 --num-executors 2 
+    target/bikeshare-1.0.47-jar-with-dependencies.jar 
+      https://raw.githubusercontent.com/briefings/bikeshare/develop/arguments.yaml
   
 ```
 
