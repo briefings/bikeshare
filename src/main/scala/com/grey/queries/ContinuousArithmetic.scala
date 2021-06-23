@@ -33,12 +33,13 @@ class ContinuousArithmetic(spark: SparkSession) {
     /**
       * Example: window
       *
-      * Imagine a bike riding firm that services a bike as as soon as the energy expended by
+      * Imagine a bike riding firm that services a bike as as soon as the energy expended by the
+      * bike, relative to the last bike service date & time, is X, i.e.,
       *
-      *   [bike weight (kg)] * [distance travelled thus far (m)]^2 / [travel time thus far (sec)]^2
+      *   [bike weight (kg)] * [distance travelled thus far (m)]^2 / [travel time thus far (sec)]^2  >=  X
       *
-      * relative to the last bike service date & time.  Then a value of interest, per bike, is the
-      * cumulative duration value w.r.t. ascending start_date
+      * Then a value of interest, per bike, is the cumulative duration value w.r.t. ascending start_date
+      *
       */
     println("Each bicycle's cumulative duration values wherein the cumulative values are w.r.t. " +
       "ascending start time.  The previews are w.r.t. sql & dataset, respectively")
