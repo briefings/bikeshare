@@ -1,0 +1,87 @@
+{
+  "type": "struct",
+  "fields": [
+    {
+      "name": "Duration",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The duration of a ride in seconds"
+      }
+    },
+    {
+      "name": "Start date",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The start date and time, yyyy-MM-dd HH:mm:ss, of a ride"
+      }
+    },
+    {
+      "name": "End date",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The end date and time, yyyy-MM-dd HH:mm:ss, of a ride"
+      }
+    },
+    {
+      "name": "Start station number",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The unique identification code of the start station of a ride"
+      }
+    },
+    {
+      "name": "Start station",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The name of the start station of a ride"
+      }
+    },
+    {
+      "name": "End station number",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The unique identification code of the end station of a ride"
+      }
+    },
+    {
+      "name": "End station",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The name of the end station of a ride"
+      }
+    },
+    {
+      "name": "Bike number",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The identification code of the bike used for the ride"
+      }
+    },
+    {
+      "name": "Member type",
+      "type": "string",
+      "nullable": false,
+      "metadata":
+      {
+        "comment": "The bike user type - Member or Casual"
+      }
+    }
+
+  ]
+}
