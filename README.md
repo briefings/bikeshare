@@ -5,6 +5,7 @@
 <br/>
 
 * [Sources](#sources)
+* [Disk Data](#disk-data)
 * [Development Notes](#development-notes)
   * [Software](#software)
 * [Test Notes](#test-notes)  
@@ -17,6 +18,12 @@
 [Washington D.C. Capital BikeShare](https://www.capitalbikeshare.com)
 * Specifically [2014 Capital BikeShare Trip Data](https://s3.amazonaws.com/capitalbikeshare-data/2014-capitalbikeshare-tripdata.zip)
 * https://www.capitalbikeshare.com/system-data
+
+<br/>
+
+### Disk Data
+
+* src/main/resources/data
 
 <br/>
 
